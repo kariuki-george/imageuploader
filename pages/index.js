@@ -30,10 +30,9 @@ export default function Home() {
     setSent(true);
     return res.data.secure_url;
   };
-  useEffect(async () => {
+  useEffect(() => {
     if (file !== undefined) {
-      const res = await upload(file);
-      setUrl(res.toString());
+      upload(file).then((res) => setUrl(res.toString()));
     }
   }, [file]);
 
@@ -56,6 +55,7 @@ export default function Home() {
             <a
               href="https://devchallenges.io/portfolio/smiley-geek"
               target="_blank"
+              rel="noreferrer"
             >
               Kariuki George
             </a>{" "}
