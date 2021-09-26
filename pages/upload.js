@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   Box,
   VStack,
   Center,
   Heading,
   Text,
-  Image,
+  Input,
   Button,
 } from "@chakra-ui/react";
+import { useDropzone } from "react-dropzone";
+import Image from "next/image";
 
-function Upload() {
+function Upload({ setFile }) {
+  const hiddenFileInput = React.useRef(null);
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
+  };
+  const handleChange = (event) => {
+    const fileUploaded = event.target.files[0];
+    setFile(fileUploaded);
+  };
+
+  const onDrop = useCallback((acceptedFiles) => {
+    setFile(acceptedFiles[0]);
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    noClick: true,
+    noKeyboard: true,
+    maxFiles: 1,
+  });
+
   return (
     <Center
       m="2em"
@@ -43,39 +65,50 @@ function Upload() {
           w={338}
           h={218.9}
           background="#F6F8FB"
-          border="1px dashed #97BEF4"
+          border={`1px ${isDragActive ? "solid" : "dashed"} #97BEF4`}
           box-sizing=" border-box"
           border-radius="12px"
+          {...getRootProps()}
         >
+          <input {...getInputProps()} />
           <Center w="100%" h="100%">
             <Image
-              src="../public/image.svg"
+              src="/image.svg"
               border-radius="3px"
               background=" #CCCCCC"
-              Width="
-                          114.13px"
-              Height="
-                          88.24px"
+              width="120px"
+              height="100px"
             />
           </Center>
         </Box>
 
         <Text
-          font-family=" Poppins"
-          font-style=" normal"
-          font-weight=" 500"
-          font-size=" 12px"
-          line-height=" 18px"
+          fontFamily=" Poppins"
+          fontStyle=" normal"
+          fontWeight=" 500"
+          fontSize=" 12px"
+          lineHeight=" 18px"
           /* identical to box height */
 
           text-align=" center"
-          letter-spacing=" -0.035em"
+          letterSpacing=" -0.035em"
         >
           or
         </Text>
-        <Button colorScheme="blue" color="white" border-radius=" 8px">
+        <Button
+          colorScheme="blue"
+          color="white"
+          border-radius=" 8px"
+          onClick={handleClick}
+        >
           Choose a file
         </Button>
+        <Input
+          type="file"
+          ref={hiddenFileInput}
+          onChange={handleChange}
+          display="none"
+        />
       </VStack>
     </Center>
   );

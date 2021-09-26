@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   VStack,
   Center,
@@ -12,7 +12,13 @@ import {
 } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 
-function Display() {
+function Display({ url }) {
+  const [copied, setCopied] = useState("Copy link");
+  const handleCopyLink = async () => {
+    await navigator.clipboard.writeText(url);
+    setCopied("copied");
+  };
+
   return (
     <Center
       m="2em"
@@ -35,10 +41,10 @@ function Display() {
         <Text
           width=" 198px"
           height=" 27px"
-          font-family=" Poppins"
-          font-style=" normal"
-          font-weight=" 500"
-          font-size=" 18px"
+          fontFamily=" Poppins"
+          fontStyle=" normal"
+          fontWeight=" 500"
+          fontSize=" 18px"
           line-height=" 27px"
           /* identical to box height */
 
@@ -51,24 +57,32 @@ function Display() {
           Uploaded Successfully!
         </Text>
         <Image
+          src={url}
           width=" 338px"
           height=" 224.4px"
           bg="gray.100"
           border=" 1px solid #E0E0E0"
           box-sizing=" border-box"
           borderRadius="12px"
+          objectFit="contain"
         />
         <InputGroup size="md">
           <Input
             pr="4.5rem"
-            placeholder="the link is"
+            value={url}
             border=" 1px solid #E0E0E0"
             box-sizing=" border-box"
             border-radius=" 8px"
           />
           <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" bg="blue" color="white">
-              copy link
+            <Button
+              h="1.75rem"
+              size="sm"
+              bg="blue"
+              color="white"
+              onClick={handleCopyLink}
+            >
+              {copied}
             </Button>
           </InputRightElement>
         </InputGroup>

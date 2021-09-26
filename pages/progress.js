@@ -17,7 +17,7 @@ function ProgressIndicator({ value }) {
       >
         <Text mb={5}>Uploading</Text>
         <Progress
-          value={value}
+          isIndeterminate
           size="md"
           colorScheme="blue"
           borderRadius=" 12px"
