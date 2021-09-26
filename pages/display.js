@@ -65,6 +65,8 @@ function Display({ url }) {
           box-sizing=" border-box"
           borderRadius="12px"
           objectFit="contain"
+          rel="noreferrer"
+          alt={url}
         />
         <InputGroup size="md">
           <Input

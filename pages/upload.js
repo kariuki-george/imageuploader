@@ -23,7 +23,7 @@ function Upload({ setFile }) {
 
   const onDrop = useCallback((acceptedFiles) => {
     setFile(acceptedFiles[0]);
-  }, []);
+  });
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -78,6 +78,7 @@ function Upload({ setFile }) {
               background=" #CCCCCC"
               width="120px"
               height="100px"
+              alt="hero image"
             />
           </Center>
         </Box>
