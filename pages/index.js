@@ -41,6 +41,7 @@ export default function Home() {
       <Head>
         <title>Upload image</title>
         <meta name="description" content="Upload an image to cloudinary" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/devchallenges.png" />
       </Head>
       <Box h="100vh" position="fixed" overflowY="scroll" w="100vw">
