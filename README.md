@@ -36,7 +36,7 @@
 
 ![screenshot](https://res.cloudinary.com/smiley-geek/image/upload/v1632650082/je1qjqqdbyytr3pelyqw.png)
 
-My project is hosted on [netlify](https://myimagemyupload.netlify.app/)
+My project is self-hosted on [https://imageuploader.p.kariukigeorge.me/](https://imageuploader.p.kariukigeorge.me/)
 
 The images are stored in [cloudinary](https://cloudinary.com/).
 
