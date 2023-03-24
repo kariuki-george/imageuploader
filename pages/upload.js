@@ -21,9 +21,12 @@ function Upload({ setFile }) {
     setFile(fileUploaded);
   };
 
-  const onDrop = useCallback((acceptedFiles) => {
-    setFile(acceptedFiles[0]);
-  });
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      setFile(acceptedFiles[0]);
+    },
+    [setFile]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
